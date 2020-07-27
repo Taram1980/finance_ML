@@ -1,0 +1,161 @@
+<?xml version="1.0"?>
+<Strategy xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>Дневки проверка</Name>
+  <ID>95d1e391-d9bc-44ba-8ae4-854022652b84</ID>
+  <Code>using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Drawing;
+using WealthLab;
+using WealthLab.Indicators;
+
+namespace WealthLab.Strategies
+{
+	public class MyStrategy : WealthScript
+	{
+
+		
+		StrategyParameter OptVar1;
+		public MyStrategy()	
+		{ 
+			OptVar1 = CreateParameter("OptVar1", 14, 6, 54, 4);
+		} 
+		
+		protected override void Execute()
+		{
+			
+			
+		int PeriodS = OptVar1.ValueInt;
+			
+	
+	//	DataSeries CMF_ = CMF.Series( Bars, 21 );
+	//	DataSeries CMO_ = CMO.Series( Close, 20 );
+	//	DataSeries TRIX_ = TRIX.Series( Close, 10 );
+	//	DataSeries ATRP_ = ATRP.Series( Bars, 14 );
+	//	DataSeries DIMinus14_ = DIMinus.Series( Bars, 14 );
+	//	DataSeries EMMinus_ = EMMinus.Series( Close, 40 );
+	//	DataSeries MFI20_ = MFI.Series( Bars, 20 );
+	//	DataSeries hMomPct_ = ( Close/( Close &gt;&gt; 14) ) * 100;
+	//	DataSeries StochD14_5_ = StochD.Series( Bars, 14, 5 );
+		DataSeries RSIClose_20_ = RSI.Series( Close, 20 );
+	//	DataSeries ROC_ = ROC.Series( Close, 30 );
+	//		DataSeries Average = (High+Low)/2;
+	//		DataSeries HVClose_20_252_ = HV.Series( Average, 20, 262 );
+	//	DataSeries CCI20_ = CCI.Series( Bars, 20 );
+	//		DataSeries hTmp = ( Close &gt;&gt; 14 );
+	//		DataSeries MomentumPctClose_14_ = ( Close/hTmp ) * 100;
+	//	DataSeries DX20_ = DX.Series( Bars, 20 );
+	//	DataSeries VHFClose_24_ = VHF.Series( Close, 24 );
+	//	DataSeries RSquaredClose_30_ = RSquared.Series( Close, 30 );
+	//	DataSeries StochK14_ = StochK.Series( Bars, PeriodS );	
+	//	DataSeries dHigh = High;
+	//	DataSeries dLow = Low;
+	//	DataSeries dif = (SMA.Series( Close, 1 )/SMA.Series( Close, 200 )-1)*100;//	
+		DataSeries ADXR14_ = ADXR.Series( Bars, 14 );
+	//	DataSeries 	AroonDownClose_20_ = AroonDown.Series( Close, 20 );
+		DataSeries 	AroonUpClose_20_ = AroonUp.Series( Close, 20 );
+	//	DataSeries MACDClose_ = MACD.Series( Close );
+	//	DataSeries ADX14_ = ADX.Series( Bars, 14 );	
+			
+	
+			ChartPane cmf_P1 = CreatePane(40, true, true);
+	//		PlotSeries (cmf_P1, AroonDownClose_20_, Color.Chocolate, WealthLab.LineStyle.Solid, 2);
+	//		PlotSeries (cmf_P1, StochD14_5_, Color.Green, WealthLab.LineStyle.Solid, 2);
+ 	//		PlotSeries (cmf_P1, DIMinus14_, Color.Green, WealthLab.LineStyle.Solid, 2);
+	
+			for(int Bar = 1; Bar &lt; Bars.Count; Bar++)
+			{
+
+
+						if (IsLastPositionActive)
+			//		if (!(((AroonDownClose_20_[Bar]  &gt;= 75.0)&amp;&amp;(AroonDownClose_20_[Bar]  &lt;= 100.0)) //
+			//			&amp;&amp; ((StochD14_5_[Bar]  &gt;= 1.9416)&amp;&amp;(StochD14_5_[Bar]  &lt;= 10.3487)) //
+			//				)) //
+							{
+//if (!((TRIX_[Bar]  &gt;= -4.0825)&amp;&amp;(TRIX_[Bar]  &lt;= -0.799))) //
+					
+					
+			//		if (!((ADXR14_[Bar]  &gt;= 33.8091)&amp;&amp;(ADXR14_[Bar]  &lt;= 68.3583)) &amp;&amp;
+			//			((RSI_[Bar]  &gt;= 10.6811)&amp;&amp;(RSI_[Bar]  &lt;= 44.8936)) &amp;&amp;
+			//				((AroonUpClose_20_[Bar]  &gt;= 0.0)&amp;&amp;(AroonUpClose_20_[Bar]  &lt;= 10.0)))
+					
+			//		if (!((ADXR14_[Bar]  &gt;= 33.8091)&amp;&amp;(ADXR14_[Bar]  &lt;= 68.3583)) &amp;&amp;
+			//			 ((RSIClose_20_[Bar]  &gt;= 10.6811)&amp;&amp;(RSIClose_20_[Bar]  &lt;= 44.8936)) &amp;&amp;
+			//				 ((AroonUpClose_20_[Bar]  &gt;= 0.0)&amp;&amp;(AroonUpClose_20_[Bar]  &lt;= 10.0))) //	
+
+								SellAtClose( Bar, Position.AllPositions, Convert.ToString(Close[LastPosition.EntryBar]));
+								
+							
+							}
+				
+				if ( ! IsLastPositionActive)
+			//	if (Date[Bar].Year&gt;=2010)
+			//	if (Date[Bar].Year&lt;=20170)
+				if (Close[Bar]*Volume[Bar]/1000000 &gt; 150 || Bars.Symbol=="VTBR")		
+				
+			//	if ((AroonDownClose_20_[Bar]  &gt;= 75.0)&amp;&amp;(AroonDownClose_20_[Bar]  &lt;= 100.0)) //
+			//	if ((StochD14_5_[Bar]  &gt;= 1.9416)&amp;&amp;(StochD14_5_[Bar]  &lt;= 10.3487)) //
+			 
+
+							
+//if ((TRIX_[Bar]  &gt;= -4.0825)&amp;&amp;(TRIX_[Bar]  &lt;= -0.799)) //	
+						
+				//		if ((ADXR14_[Bar]  &gt;= 33.8091)&amp;&amp;(ADXR14_[Bar]  &lt;= 68.3583)) //
+				//			if ((RSI_[Bar]  &gt;= 10.6811)&amp;&amp;(RSI_[Bar]  &lt;= 44.8936)) //
+				//				if ((AroonUpClose_20_[Bar]  &gt;= 0.0)&amp;&amp;(AroonUpClose_20_[Bar]  &lt;= 10.0)) //
+						
+						if ((ADXR14_[Bar]  &gt;= 33.8091)&amp;&amp;(ADXR14_[Bar]  &lt;= 68.3583)) //
+							if ((RSIClose_20_[Bar]  &gt;= 10.6811)&amp;&amp;(RSIClose_20_[Bar]  &lt;= 44.8936)) //
+								if ((AroonUpClose_20_[Bar]  &gt;= 0.0)&amp;&amp;(AroonUpClose_20_[Bar]  &lt;= 10.0)) //
+									
+									{
+										BuyAtClose(Bar, Convert.ToString(Close[Bar]));
+									}
+				
+				}
+			
+							
+
+		}
+	}
+}</Code>
+  <Description />
+  <Author>Local</Author>
+  <CreationDate>2020-07-23T08:42:40.5491374+03:00</CreationDate>
+  <LastModified>2020-07-27T13:36:40.2458977+03:00</LastModified>
+  <StrategyType>Script</StrategyType>
+  <AccountNumber />
+  <ParameterValues />
+  <DataSetName>dayAll</DataSetName>
+  <Symbol />
+  <DataScale>
+    <Scale>Daily</Scale>
+    <BarInterval>0</BarInterval>
+  </DataScale>
+  <PositionSize>
+    <Mode>RawProfitDollar</Mode>
+    <RawProfitDollarSize>1000000</RawProfitDollarSize>
+    <RawProfitShareSize>100</RawProfitShareSize>
+    <StartingCapital>10000000000</StartingCapital>
+    <DollarSize>1000000</DollarSize>
+    <ShareSize>100</ShareSize>
+    <PctSize>10</PctSize>
+    <RiskSize>3</RiskSize>
+    <SimuScriptName />
+    <MarginFactor>1</MarginFactor>
+  </PositionSize>
+  <DataRange>
+    <Range>DateRange</Range>
+    <StartDate>2006-01-01T00:00:00</StartDate>
+    <EndDate>2022-04-01T00:00:00</EndDate>
+    <FixedBars>500</FixedBars>
+    <RecentValue>10</RecentValue>
+    <IsStreaming>false</IsStreaming>
+  </DataRange>
+  <Indicators>AAAAAAAAAAA=</Indicators>
+  <Rules />
+  <SinglePosition>true</SinglePosition>
+  <References />
+  <PreferredValues />
+  <UsePreferredValues>false</UsePreferredValues>
+</Strategy>
