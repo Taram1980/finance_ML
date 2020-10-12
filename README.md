@@ -1,1 +1,1 @@
-# some code for finance_ML in python
+# some codes for finance_ML in python
